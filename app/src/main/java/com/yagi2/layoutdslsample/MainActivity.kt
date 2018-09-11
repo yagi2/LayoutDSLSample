@@ -1,5 +1,7 @@
+@file:SuppressLint("SetTextI18n")
 package com.yagi2.layoutdslsample
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle

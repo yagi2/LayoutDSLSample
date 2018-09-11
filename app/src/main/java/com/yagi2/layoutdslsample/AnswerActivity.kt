@@ -1,5 +1,8 @@
+@file:SuppressLint("SetTextI18n")
+
 package com.yagi2.layoutdslsample
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
@@ -9,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 
+@SuppressLint("Registered")
 class AnswerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,34 +46,29 @@ class AnswerActivity : AppCompatActivity() {
     }
 
     inner class LayoutBuilder(private val context: Context) {
-        fun linearLayout(init: LinearLayout.() -> Unit): LinearLayout {
-            return LinearLayout(context).apply(init)
-        }
+        fun linearLayout(init: LinearLayout.() -> Unit): LinearLayout =
+                LinearLayout(context).apply(init)
 
-        fun ViewGroup.textView(init: TextView.() -> Unit): TextView {
-            val tv = TextView(context).apply(init)
-            this.addView(tv)
-            return tv
-        }
+        fun ViewGroup.textView(init: TextView.() -> Unit): TextView =
+                TextView(context).apply(init).also(this::addView)
 
         fun TextView.lparams(
-                width: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
-                height: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
+                width: Int = LinearLayout.LayoutParams.WRAP_CONTENT,
+                height: Int = LinearLayout.LayoutParams.WRAP_CONTENT,
                 init: LinearLayout.LayoutParams.() -> Unit
-        ): TextView {
-            val lp = LinearLayout.LayoutParams(width, height).apply(init)
-            layoutParams = lp
-            return this
-        }
-
-        var LinearLayout.LayoutParams.margin: Int
-            @Deprecated("This property does not have a getter", level = DeprecationLevel.ERROR)
-            get() = throw RuntimeException("Property does not have a getter")
-            set(v) = setMargins(v, v, v, v)
+        ): TextView =
+                this.apply {
+                    layoutParams = LinearLayout.LayoutParams(width, height).apply(init)
+                }
 
         var TextView.textColor: Int
             get() = currentTextColor
             set(v) = setTextColor(v)
+
+        var LinearLayout.LayoutParams.margin: Int
+            @Deprecated("This property does not have a getter.", level = DeprecationLevel.ERROR)
+            get() = throw RuntimeException("This property does not have a getter.")
+            set(v) = setMargins(v, v, v, v)
 
         private fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
         fun View.dip(value: Int) = context.dip(value)
