@@ -49,7 +49,7 @@ class AnswerActivity : AppCompatActivity() {
         fun ViewGroup.textView(init: TextView.() -> Unit): TextView {
             val tv = TextView(context).apply(init)
             this.addView(tv)
-            return textView
+            return tv
         }
 
         fun TextView.lparams(
@@ -65,13 +65,13 @@ class AnswerActivity : AppCompatActivity() {
         var LinearLayout.LayoutParams.margin: Int
             @Deprecated("This property does not have a getter", level = DeprecationLevel.ERROR)
             get() = throw RuntimeException("Property does not have a getter")
-            set(value) = setMargins(value, value, value, value)
+            set(v) = setMargins(v, v, v, v)
 
         var TextView.textColor: Int
             get() = currentTextColor
-            set(value) = setTextColor(value)
+            set(v) = setTextColor(v)
 
-        fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
+        private fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
         fun View.dip(value: Int) = context.dip(value)
     }
 }
