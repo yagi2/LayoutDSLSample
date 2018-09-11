@@ -26,7 +26,7 @@ class AnswerActivity : AppCompatActivity() {
 
             textView {
                 text = "Kotlin!"
-                textColor = Color.GREEN
+                textColor = Color.BLUE
             }.lparams {
                 margin = dip(10)
             }
@@ -47,8 +47,8 @@ class AnswerActivity : AppCompatActivity() {
         }
 
         fun ViewGroup.textView(init: TextView.() -> Unit): TextView {
-            val textView = TextView(context).apply(init)
-            this.addView(textView)
+            val tv = TextView(context).apply(init)
+            this.addView(tv)
             return textView
         }
 
@@ -57,8 +57,8 @@ class AnswerActivity : AppCompatActivity() {
                 height: Int = ViewGroup.LayoutParams.WRAP_CONTENT,
                 init: LinearLayout.LayoutParams.() -> Unit
         ): TextView {
-            val layoutParams = LinearLayout.LayoutParams(width, height).apply(init)
-            this.layoutParams = layoutParams
+            val lp = LinearLayout.LayoutParams(width, height).apply(init)
+            layoutParams = lp
             return this
         }
 
