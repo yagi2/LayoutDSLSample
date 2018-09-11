@@ -50,7 +50,7 @@ class AnswerActivity : AppCompatActivity() {
                 LinearLayout(context).apply(init)
 
         fun ViewGroup.textView(init: TextView.() -> Unit): TextView =
-                TextView(context).apply(init).also(this::addView)
+                TextView(context).apply(init).also(::addView)
 
         fun TextView.lparams(
                 width: Int = LinearLayout.LayoutParams.WRAP_CONTENT,
