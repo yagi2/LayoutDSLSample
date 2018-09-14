@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
                 height: Int = LinearLayout.LayoutParams.WRAP_CONTENT,
                 init: LinearLayout.LayoutParams.() -> Unit
         ): TextView =
-                this.apply {
+                apply {
                     layoutParams = LinearLayout.LayoutParams(width, height).apply(init)
                 }
 
@@ -67,7 +67,7 @@ class MainActivity : AppCompatActivity() {
             get() = throw RuntimeException("This property does not have a getter.")
             set(v) = setMargins(v, v, v, v)
 
-        private fun Context.dip(value: Int): Int = (value * resources.displayMetrics.density).toInt()
-        fun View.dip(value: Int) = context.dip(value)
+        private fun Context.dip(px: Int): Int = (px * resources.displayMetrics.density).toInt()
+        fun View.dip(px: Int) = context.dip(px)
     }
 }
