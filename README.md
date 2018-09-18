@@ -7,4 +7,4 @@ Kotlinを使ってAnko-likeなLayoutを組むDSLを実装します。
 `MainActivity.kt`に存在する完成形のDSLを動くように実装していきましょう。  
 [`answer`ブランチ](https://github.com/yagi2/LayoutDSLSample/tree/answer)に答えが存在するので、参考にしてみてください。
 
-発表スライド：TBD
+発表スライド：[Kotlin DSLを理解してみる / Understanding Kotlin DSL - Speaker Deck](https://speakerdeck.com/yagi2/understanding-kotlin-dsl)  
